@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  SNAPPY CAT TRAVELS — snappycattravels.in
+  ============================================================
+
+  FREE HOSTING OPTIONS:
+  ─ Netlify Drop   → app.netlify.com/drop  (drag & drop, live in 30 sec)
+  ─ GitHub Pages   → github.com → new repo "snappycattravels" → upload as index.html → Settings → Pages
+  ─ Cloudflare Pages → pages.cloudflare.com
+
+  CUSTOMISE:
+  → Search [YOUR NAME] and replace everywhere
+  → Swap Unsplash image URLs with your own photos
+  → Replace affiliate href="#" with your real affiliate URLs
+  → Add new posts by duplicating the .post-card block
+  ============================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Snappy Cat Travels — Go Somewhere Worth Talking About</title>
+<meta name="description" content="Real trips, zero fluff, maximum chaos. Snappy Cat Travels is a Gen Z travel journal covering the places no algorithm recommended — written by someone who actually went.">
+<meta name="author" content="[YOUR NAME]">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Snappy Cat Travels — Go Somewhere Worth Talking About">
+<meta property="og:description" content="Real trips, zero fluff, maximum chaos.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://snappycattravels.in">
+<meta property="og:image" content="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────── */
+:root {
+  --white:       #ffffff;
+  --off-white:   #f5faf7;
+  --ink:         #0a140e;
+  --ink2:        #1a2e20;
+  --muted:       #5a7060;
+
+  --green:       #00c96e;
+  --green-dark:  #009952;
+  --green-pale:  #d4f5e4;
+  --green-mid:   #00a85a;
+
+  --blue:        #0ea5e9;
+  --blue-dark:   #0369a1;
+  --blue-pale:   #e0f2fe;
+  --blue-mid:    #38bdf8;
+
+  --pink:        #f43f8e;
+  --pink-dark:   #be185d;
+  --pink-pale:   #fce7f3;
+  --pink-mid:    #f472b6;
+
+  --yellow:      #fbbf24;
+
+  --border:      #d4e8dc;
+  --border-dark: #a8cbb8;
+
+  --font-head:   'Syne', system-ui, sans-serif;
+  --font-body:   'Outfit', system-ui, sans-serif;
+  --max-w:       1180px;
+  --r:           12px;
+  --r-sm:        8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--off-white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--green-dark); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--green); }
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(245,250,247,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--green-pale);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo .cat { font-size: 1.3rem; }
+.nav-logo .dot-in {
+  font-size: 0.65rem;
+  background: var(--green);
+  color: white;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+.nav-links { display: flex; gap: 2rem; align-items: center; list-style: none; }
+.nav-links a {
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green-dark); }
+.nav-cta {
+  background: var(--ink) !important;
+  color: var(--white) !important;
+  padding: 8px 20px !important;
+  border-radius: 30px !important;
+  font-size: 0.77rem !important;
+}
+.nav-cta:hover { background: var(--ink2) !important; color: var(--green) !important; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; transition: 0.3s; }
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  min-height: 94vh;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0;
+}
+.hero-left {
+  padding: 6rem 3rem 6rem 4rem;
+  position: relative; z-index: 2;
+  background: var(--off-white);
+}
+.hero-right {
+  position: relative;
+  height: 100%;
+  min-height: 94vh;
+}
+.hero-right-img {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&auto=format&fit=crop&q=80') center/cover no-repeat;
+}
+.hero-right-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--off-white) 0%, transparent 20%);
+}
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green-pale);
+  border: 1.5px solid var(--green);
+  color: var(--green-dark);
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+}
+.hero-tag .pulse {
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+h1.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+h1.hero-title .line2 {
+  display: block;
+  color: var(--green-dark);
+  font-style: italic;
+}
+h1.hero-title .line3 {
+  display: block;
+  -webkit-text-stroke: 2px var(--ink);
+  color: transparent;
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.hero-sub strong { color: var(--ink); font-weight: 600; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-green {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green);
+  color: var(--ink);
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 30px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-green:hover { background: var(--green-dark); color: white; transform: translateY(-2px); }
+.btn-pink {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--pink);
+  color: white;
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 30px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-pink:hover { background: var(--pink-dark); color: white; transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 2px solid var(--border-dark);
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 30px;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+/* floating sticker badges on hero */
+.hero-sticker {
+  position: absolute;
+  z-index: 10;
+  font-family: var(--font-head);
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50%       { transform: translateY(-10px) rotate(-4deg); }
+}
+.sticker-1 {
+  width: 100px; height: 100px;
+  background: var(--pink);
+  color: white;
+  font-size: 0.65rem;
+  bottom: 15%; right: 8%;
+  animation-delay: 0s;
+  rotate: -8deg;
+}
+.sticker-2 {
+  width: 90px; height: 90px;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 0.62rem;
+  top: 15%; right: 12%;
+  animation-delay: 1.2s;
+  rotate: 6deg;
+}
+.sticker-1 .s-num, .sticker-2 .s-num {
+  font-size: 1.4rem; line-height: 1;
+}
+
+.hero-scroll-hint {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 3rem;
+  font-size: 0.72rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-line { width: 32px; height: 2px; background: var(--border-dark); border-radius: 2px; }
+
+/* ─────────────────────────────────────────
+   MARQUEE STRIP
+───────────────────────────────────────── */
+.marquee-wrap {
+  background: var(--ink);
+  padding: 0;
+  overflow: hidden;
+  border-top: 3px solid var(--green);
+  border-bottom: 3px solid var(--green);
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 22s linear infinite;
+  padding: 14px 0;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 0 2rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.marquee-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.m-green { background: var(--green); }
+.m-pink  { background: var(--pink); }
+.m-blue  { background: var(--blue); }
+
+/* ─────────────────────────────────────────
+   SECTION UTILS
+───────────────────────────────────────── */
+section { padding: 5.5rem 2rem; }
+.container { max-width: var(--max-w); margin: 0 auto; }
+.s-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.s-eyebrow.green { color: var(--green-dark); }
+.s-eyebrow.blue  { color: var(--blue-dark); }
+.s-eyebrow.pink  { color: var(--pink-dark); }
+.s-eyebrow::before { content: '✦'; font-size: 0.6rem; }
+
+h2.s-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+h2.s-title em {
+  font-style: italic;
+  color: var(--green-dark);
+}
+h2.s-title .pink-txt { color: var(--pink); }
+h2.s-title .blue-txt { color: var(--blue-dark); }
+
+.s-sub { font-size: 1rem; color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 3rem; }
+
+/* ─────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────── */
+.about-section { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center; }
+.about-img-wrap {
+  position: relative;
+}
+.about-img-wrap img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: var(--r);
+}
+.about-img-badge {
+  position: absolute;
+  bottom: -1.5rem; right: -1.5rem;
+  background: var(--pink);
+  color: white;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.7rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--r-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  rotate: 3deg;
+  border: 3px solid white;
+}
+.about-img-badge .big { font-size: 1.6rem; display: block; line-height: 1; }
+.about-tag-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 1.5rem 0; }
+.tag-chip {
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 30px;
+  letter-spacing: 0.03em;
+}
+.chip-green { background: var(--green-pale); color: var(--green-dark); border: 1.5px solid var(--green); }
+.chip-blue  { background: var(--blue-pale);  color: var(--blue-dark);  border: 1.5px solid var(--blue); }
+.chip-pink  { background: var(--pink-pale);  color: var(--pink-dark);  border: 1.5px solid var(--pink); }
+.about-promise {
+  background: var(--green-pale);
+  border: 2px solid var(--green);
+  border-radius: var(--r);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+}
+.about-promise p {
+  font-family: var(--font-head);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  line-height: 1.6;
+}
+.about-promise p span { color: var(--ink); }
+
+/* ─────────────────────────────────────────
+   POSTS GRID
+───────────────────────────────────────── */
+.posts-section { background: var(--off-white); }
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* Hero post — spans full width */
+.post-hero {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--white);
+  border: 2px solid var(--border);
+  transition: border-color 0.2s, transform 0.25s;
+  cursor: pointer;
+}
+.post-hero:hover { border-color: var(--green); transform: translateY(-3px); }
+.post-hero-img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; }
+.post-hero-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+
+/* Standard post card */
+.post-card {
+  background: var(--white);
+  border-radius: var(--r);
+  overflow: hidden;
+  border: 2px solid var(--border);
+  display: flex; flex-direction: column;
+  transition: border-color 0.2s, transform 0.25s;
+  cursor: pointer;
+}
+.post-card:hover { border-color: var(--green); transform: translateY(-3px); }
+.post-card-img-wrap { overflow: hidden; position: relative; }
+.post-card-img-wrap img {
+  width: 100%; aspect-ratio: 3/2; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.post-card:hover .post-card-img-wrap img { transform: scale(1.05); }
+.post-hero:hover .post-hero-img { transform: scale(1.03); transition: transform 0.5s ease; }
+
+.post-region-tag {
+  position: absolute; bottom: 0.75rem; left: 0.75rem;
+  background: rgba(10,20,14,0.75);
+  backdrop-filter: blur(6px);
+  color: var(--green);
+  font-family: var(--font-head);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 20px;
+}
+.post-card-body { padding: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; }
+.post-meta-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; color: var(--muted);
+  font-family: var(--font-head); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-dark); }
+h3.post-title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+  transition: color 0.2s;
+}
+.post-card:hover h3.post-title,
+.post-hero:hover h3.post-title { color: var(--green-dark); }
+.post-hero-body h3.post-title { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.post-excerpt { font-size: 0.875rem; color: var(--muted); line-height: 1.75; flex-grow: 1; margin-bottom: 1rem; }
+.post-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-head); font-size: 0.78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--green-dark);
+  transition: gap 0.2s;
+}
+.post-card:hover .post-cta,
+.post-hero:hover .post-cta { gap: 12px; }
+.post-cta::after { content: '→'; }
+.feat-badge {
+  display: inline-block;
+  background: var(--green); color: var(--ink);
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+/* ─────────────────────────────────────────
+   SAMPLE BLOG POST PAGE
+───────────────────────────────────────── */
+.blog-post-section { background: var(--white); }
+.blog-post-wrap { max-width: 720px; margin: 0 auto; }
+.bp-top-bar {
+  display: flex; align-items: center; gap: 1rem;
+  flex-wrap: wrap; margin-bottom: 2rem;
+}
+.bp-cat {
+  background: var(--blue-pale); color: var(--blue-dark);
+  font-family: var(--font-head); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1.5px solid var(--blue);
+}
+.bp-time { font-size: 0.78rem; color: var(--muted); font-family: var(--font-head); font-weight: 600; }
+h1.bp-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.bp-hero-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: var(--r); margin-bottom: 0.75rem; }
+.bp-caption { font-size: 0.78rem; color: var(--muted); text-align: center; font-style: italic; margin-bottom: 2.5rem; }
+.bp-body { font-size: 1.05rem; line-height: 1.85; color: var(--ink2); }
+.bp-body h2 {
+  font-family: var(--font-head); font-size: 1.5rem; font-weight: 800;
+  letter-spacing: -0.02em; color: var(--ink);
+  margin: 2.5rem 0 0.9rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--green);
+}
+.bp-body p { margin-bottom: 1.4rem; }
+.bp-body strong { color: var(--ink); font-weight: 600; }
+.bp-body em { font-style: italic; color: var(--green-dark); }
+.bp-body ul { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+.bp-body li { margin-bottom: 0.5rem; }
+.bp-body blockquote {
+  background: var(--green-pale);
+  border-left: 4px solid var(--green);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  line-height: 1.6;
+}
+
+/* Photo grid inside post */
+.bp-photo-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 2rem 0;
+}
+.bp-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--r-sm); }
+.bp-photo-grid img:first-child { grid-column: span 2; aspect-ratio: 16/7; }
+
+/* Affiliate recommendation box */
+.aff-box {
+  background: var(--off-white);
+  border: 2px solid var(--border);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.aff-icon {
+  font-size: 1.75rem; flex-shrink: 0;
+  width: 52px; height: 52px;
+  background: var(--green-pale); border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--green);
+}
+.aff-content { flex: 1; }
+.aff-label {
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--green-dark); margin-bottom: 0.3rem;
+}
+.aff-content h4 {
+  font-family: var(--font-head); font-size: 0.95rem; font-weight: 700;
+  color: var(--ink); margin-bottom: 0.3rem;
+}
+.aff-content p { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.6; }
+.aff-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--ink); color: var(--white);
+  font-family: var(--font-head); font-size: 0.75rem; font-weight: 700;
+  padding: 8px 18px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  transition: background 0.2s;
+}
+.aff-btn:hover { background: var(--green-dark); color: white; }
+.aff-fine { font-size: 0.68rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; }
+
+/* ─────────────────────────────────────────
+   DESTINATIONS TILES
+───────────────────────────────────────── */
+.dest-section { background: var(--ink); }
+.dest-section .s-title { color: var(--white); }
+.dest-section .s-sub { color: rgba(255,255,255,0.5); }
+.dest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.dest-tile {
+  position: relative; overflow: hidden; border-radius: var(--r); cursor: pointer;
+}
+.dest-tile img { width: 100%; aspect-ratio: 3/4; object-fit: cover; transition: transform 0.5s ease; }
+.dest-tile:hover img { transform: scale(1.07); }
+.dest-tile-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,20,14,0.8) 0%, rgba(10,20,14,0.1) 60%);
+}
+.dest-tile-label {
+  position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
+}
+.dest-tile-label h3 {
+  font-family: var(--font-head); font-size: 1.1rem; font-weight: 800;
+  color: white; line-height: 1.15; margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.dest-tile-label span {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+  font-family: var(--font-head); font-weight: 600;
+}
+.dest-tag-green { color: var(--green); }
+.dest-tag-pink  { color: var(--pink-mid); }
+.dest-tag-blue  { color: var(--blue-mid); }
+
+/* ─────────────────────────────────────────
+   GEAR SECTION
+───────────────────────────────────────── */
+.gear-section { background: var(--off-white); }
+.gear-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.gear-card {
+  background: var(--white);
+  border-radius: var(--r);
+  border: 2px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.gear-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+.gear-card-img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
+.gear-card-body { padding: 1.25rem; }
+.gear-cat {
+  font-family: var(--font-head); font-size: 0.65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 0.6rem;
+}
+.cat-blue { background: var(--blue-pale); color: var(--blue-dark); }
+.cat-pink { background: var(--pink-pale); color: var(--pink-dark); }
+.cat-green { background: var(--green-pale); color: var(--green-dark); }
+.gear-card-body h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+.gear-card-body p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+.gear-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-head); font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--blue-dark); transition: gap 0.2s;
+}
+.gear-link:hover { gap: 10px; color: var(--blue); }
+.gear-link::after { content: '↗'; }
+
+/* ─────────────────────────────────────────
+   NEWSLETTER
+───────────────────────────────────────── */
+.nl-section { background: var(--green); }
+.nl-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.nl-left h2 {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800; letter-spacing: -0.03em;
+  color: var(--ink); line-height: 1.05; margin-bottom: 1rem;
+}
+.nl-left p { font-size: 1rem; color: rgba(10,20,14,0.65); line-height: 1.8; }
+.nl-form-wrap {
+  background: white;
+  border-radius: var(--r);
+  padding: 2rem;
+  box-shadow: 0 8px 40px rgba(0,180,90,0.15);
+}
+.nl-form-wrap h3 {
+  font-family: var(--font-head); font-size: 1.1rem; font-weight: 800;
+  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.4rem;
+}
+.nl-form-wrap p { font-size: 0.83rem; color: var(--muted); margin-bottom: 1.5rem; }
+.nl-form { display: flex; flex-direction: column; gap: 0.75rem; }
+.nl-form input {
+  width: 100%;
+  background: var(--off-white);
+  border: 2px solid var(--border);
+  color: var(--ink);
+  font-family: var(--font-body); font-size: 0.9rem;
+  padding: 12px 16px; border-radius: var(--r-sm);
+  outline: none; transition: border-color 0.2s;
+}
+.nl-form input:focus { border-color: var(--green); }
+.nl-form input::placeholder { color: var(--muted); }
+.nl-form button {
+  width: 100%;
+  background: var(--ink); color: white;
+  font-family: var(--font-head); font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 13px; border: none; border-radius: var(--r-sm);
+  cursor: pointer; transition: background 0.2s;
+}
+.nl-form button:hover { background: var(--green-dark); }
+.nl-fine { font-size: 0.7rem; color: var(--muted); margin-top: 0.5rem; text-align: center; }
+.nl-perks { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.25rem; }
+.nl-perk {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; color: rgba(10,20,14,0.65);
+  font-family: var(--font-head); font-weight: 600;
+}
+.nl-perk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─────────────────────────────────────────
+   DISCLOSURE + FOOTER
+───────────────────────────────────────── */
+.disclosure {
+  background: var(--off-white);
+  border-top: 2px solid var(--border);
+  padding: 1.1rem 2rem;
+}
+.disclosure p { max-width: var(--max-w); margin: 0 auto; font-size: 0.72rem; color: var(--muted); text-align: center; line-height: 1.7; }
+footer {
+  background: var(--ink);
+  padding: 4rem 2rem 2rem;
+}
+.footer-top {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-logo {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 1.2rem; color: white;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;
+}
+.footer-logo .cat { font-size: 1.3rem; }
+.footer-about { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.75; max-width: 280px; }
+.footer-col h5 {
+  font-family: var(--font-head); font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--green); margin-bottom: 1.25rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.55rem; }
+.footer-col a { font-size: 0.83rem; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+.footer-col a:hover { color: var(--green); }
+.footer-bottom {
+  max-width: var(--max-w); margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.73rem; color: rgba(255,255,255,0.3);
+}
+.social-row { display: flex; gap: 0.75rem; }
+.social-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-family: var(--font-head); font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+.social-btn:hover { border-color: var(--green); color: var(--green); }
+
+/* ─────────────────────────────────────────
+   REVEAL ANIMATIONS
+───────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* Hero animate in */
+.hero-tag     { animation: popIn 0.5s ease 0.2s both; }
+h1.hero-title { animation: popIn 0.5s ease 0.35s both; }
+.hero-sub     { animation: popIn 0.5s ease 0.5s both; }
+.hero-actions { animation: popIn 0.5s ease 0.65s both; }
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { height: 50vw; min-height: 300px; }
+  .hero-right-img::after { background: linear-gradient(to bottom, var(--off-white) 0%, transparent 25%); }
+  .hero-left { padding: 5rem 2rem 3rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-img-wrap { max-width: 380px; }
+  .posts-grid { grid-template-columns: 1fr 1fr; }
+  .post-hero { grid-column: span 2; grid-template-columns: 1fr; }
+  .post-hero-img { height: 300px; }
+  .dest-grid { grid-template-columns: 1fr 1fr; }
+  .gear-grid { grid-template-columns: 1fr 1fr; }
+  .nl-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .sticker-1, .sticker-2 { display: none; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--off-white); border-bottom: 2px solid var(--green-pale);
+    padding: 1.5rem 2rem; gap: 1.25rem; z-index: 300;
+  }
+  .hamburger { display: block; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .post-hero { grid-column: span 1; }
+  .dest-grid { grid-template-columns: 1fr 1fr; }
+  .gear-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .bp-photo-grid { grid-template-columns: 1fr; }
+  .bp-photo-grid img:first-child { grid-column: span 1; aspect-ratio: 16/9; }
+  .aff-box { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <span class="cat">🐱</span>
+    snappycat travels
+    <span class="dot-in">.in</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#posts">Journal</a></li>
+    <li><a href="#destinations">Places</a></li>
+    <li><a href="#gear">Gear</a></li>
+    <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <span class="pulse"></span>
+      New post just dropped
+    </div>
+    <h1 class="hero-title">
+      Go places
+      <span class="line2">worth the</span>
+      <span class="line3">story.</span>
+    </h1>
+    <p class="hero-sub">
+      Hi, I'm <strong>[YOUR NAME]</strong> — I travel to places that actually surprise me, write about them honestly, and never pretend the bad days didn't happen. Welcome to Snappy Cat Travels.
+    </p>
+    <div class="hero-actions">
+      <a href="#posts" class="btn-green">Read the Journal ↓</a>
+      <a href="#about" class="btn-ghost">My Story</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-img" style="background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1000&auto=format&fit=crop&q=80');"></div>
+    <!-- floating sticker badges -->
+    <div class="hero-sticker sticker-1">
+      <span class="s-num">20+</span>
+      countries &amp;<br>counting
+    </div>
+    <div class="hero-sticker sticker-2">
+      <span class="s-num">✦</span>
+      no paid<br>reviews
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <span class="marquee-item"><span class="marquee-dot m-green"></span>Southeast Asia</span>
+    <span class="marquee-item"><span class="marquee-dot m-pink"></span>Solo Travel Tips</span>
+    <span class="marquee-item"><span class="marquee-dot m-blue"></span>Japan ✦ Morocco ✦ Georgia</span>
+    <span class="marquee-item"><span class="marquee-dot m-green"></span>Honest Reviews</span>
+    <span class="marquee-item"><span class="marquee-dot m-pink"></span>Budget Guides</span>
+    <span class="marquee-item"><span class="marquee-dot m-blue"></span>Best Gear Picks</span>
+    <span class="marquee-item"><span class="marquee-dot m-green"></span>snappycattravels.in</span>
+    <span class="marquee-item"><span class="marquee-dot m-pink"></span>Southeast Asia</span>
+    <span class="marquee-item"><span class="marquee-dot m-blue"></span>Solo Travel Tips</span>
+    <span class="marquee-item"><span class="marquee-dot m-green"></span>Japan ✦ Morocco ✦ Georgia</span>
+    <span class="marquee-item"><span class="marquee-dot m-pink"></span>Honest Reviews</span>
+    <span class="marquee-item"><span class="marquee-dot m-blue"></span>Budget Guides</span>
+    <span class="marquee-item"><span class="marquee-dot m-green"></span>Best Gear Picks</span>
+    <span class="marquee-item"><span class="marquee-dot m-pink"></span>snappycattravels.in</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <!-- Replace with your own photo -->
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=600&auto=format&fit=crop&q=80" alt="[YOUR NAME] — creator of Snappy Cat Travels" loading="lazy">
+        <div class="about-img-badge">
+          <span class="big">[X]+</span>
+          countries<br>visited
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <div class="s-eyebrow green">The human behind the cat</div>
+        <h2 class="s-title">I travel curious.<br>I write <em>honest.</em></h2>
+
+        <p style="font-size:1rem; color:var(--muted); line-height:1.85; margin-bottom:1rem;">
+          Hey, I'm <strong style="color:var(--ink)">[YOUR NAME]</strong> — the slightly feral travel writer behind Snappy Cat Travels. I started this blog because I was tired of reading guides written by people who clearly used a stock photo and a Wikipedia article.
+        </p>
+        <p style="font-size:1rem; color:var(--muted); line-height:1.85; margin-bottom:1.5rem;">
+          Every destination you find here I've actually been to. Every hotel recommendation came from a real night's sleep (or lack of). I'm based in India, I travel mostly solo, and I share the full picture — including the guesthouses that smelled weird and the trains I missed.
+        </p>
+
+        <div class="about-tag-row">
+          <span class="tag-chip chip-green">Solo Traveller</span>
+          <span class="tag-chip chip-blue">Based in India 🇮🇳</span>
+          <span class="tag-chip chip-pink">Obsessed with food</span>
+          <span class="tag-chip chip-green">[X]+ Countries</span>
+          <span class="tag-chip chip-blue">Photography nerd</span>
+        </div>
+
+        <div class="about-promise">
+          <p>
+            <span>My promise to you:</span> affiliate links are always marked. Sponsored content is always disclosed. I turn down stuff I don't believe in — this site stays honest or it doesn't exist.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ POSTS ══ -->
+<section class="posts-section" id="posts">
+  <div class="container">
+    <div class="s-eyebrow pink reveal">Latest from the Journal</div>
+    <h2 class="s-title reveal">Stories that are <span class="pink-txt">actually</span> worth reading</h2>
+
+    <div class="posts-grid" style="margin-top:2.5rem;">
+
+      <!-- FEATURED POST -->
+      <div class="post-hero reveal">
+        <img class="post-hero-img" src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900&auto=format&fit=crop&q=80" alt="Kyoto back streets at dawn" loading="lazy">
+        <div class="post-hero-body">
+          <div class="feat-badge">✦ Editor's Pick</div>
+          <div class="post-meta-row">
+            <span>Japan</span><span class="post-meta-dot"></span>
+            <span>May 2026</span><span class="post-meta-dot"></span>
+            <span>11 min</span>
+          </div>
+          <h3 class="post-title">Kyoto Before 7am Is a Different City — Here's How to See It</h3>
+          <p class="post-excerpt">Three weeks, one bicycle, and the discovery that the most beautiful parts of Kyoto are the ones nobody's photographed yet. Also: the best coffee I've ever had was in an unmarked basement. I'll tell you where.</p>
+          <a href="#sample-post" class="post-cta">Read the full story</a>
+        </div>
+      </div>
+
+      <!-- POST CARDS — duplicate to add more -->
+      <div class="post-card reveal">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=700&auto=format&fit=crop&q=80" alt="Fez medina streets, Morocco" loading="lazy">
+          <span class="post-region-tag">North Africa · Morocco</span>
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row"><span>April 2026</span><span class="post-meta-dot"></span><span>8 min</span></div>
+          <h3 class="post-title">Fez Tried to Break Me. I Came Back Anyway.</h3>
+          <p class="post-excerpt">Getting hopelessly lost in a 1,200-year-old medina, eating the best pastilla of my life, and the riad that honestly changed me a bit.</p>
+          <a href="#" class="post-cta">Read more</a>
+        </div>
+      </div>
+
+      <div class="post-card reveal reveal-d1">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=700&auto=format&fit=crop&q=80" alt="Hoi An lanterns at night, Vietnam" loading="lazy">
+          <span class="post-region-tag">Southeast Asia · Vietnam</span>
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row"><span>March 2026</span><span class="post-meta-dot"></span><span>9 min</span></div>
+          <h3 class="post-title">Hoi An: A Guide for People Who Hate Tourist Guides</h3>
+          <p class="post-excerpt">I visited twice. The first time was a mistake. The second time — bicycle, no itinerary, one local tip — was one of my favourite trips ever.</p>
+          <a href="#" class="post-cta">Read more</a>
+        </div>
+      </div>
+
+      <div class="post-card reveal reveal-d2">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?w=700&auto=format&fit=crop&q=80" alt="Caucasus mountains, Georgia" loading="lazy">
+          <span class="post-region-tag">Caucasus · Georgia</span>
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row"><span>Feb 2026</span><span class="post-meta-dot"></span><span>7 min</span></div>
+          <h3 class="post-title">Nobody Warned Me Georgia Would Be This Good</h3>
+          <p class="post-excerpt">Ancient wine, absurdly generous hosts, mountains that dwarf everything, and food that takes three hours to finish. Go before everyone else does.</p>
+          <a href="#" class="post-cta">Read more</a>
+        </div>
+      </div>
+
+      <div class="post-card reveal">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=700&auto=format&fit=crop&q=80" alt="Alentejo, Portugal coast" loading="lazy">
+          <span class="post-region-tag">Europe · Portugal</span>
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row"><span>Jan 2026</span><span class="post-meta-dot"></span><span>6 min</span></div>
+          <h3 class="post-title">The Portugal Everyone Goes to Is Not the Best Portugal</h3>
+          <p class="post-excerpt">One hour inland from Lisbon is a golden, empty region called the Alentejo. Fewer crowds, better wine, same sunsets. You're welcome.</p>
+          <a href="#" class="post-cta">Read more</a>
+        </div>
+      </div>
+
+      <div class="post-card reveal reveal-d1">
+        <div class="post-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&auto=format&fit=crop&q=80" alt="Travel packing flatlay" loading="lazy">
+          <span class="post-region-tag">Practical · Packing</span>
+        </div>
+        <div class="post-card-body">
+          <div class="post-meta-row"><span>Dec 2025</span><span class="post-meta-dot"></span><span>5 min</span></div>
+          <h3 class="post-title">My Exact Pack List for 3 Weeks in Asia (After Getting It Wrong 4 Times)</h3>
+          <p class="post-excerpt">The bag, the shoes, the camera, the things I bought once and never replaced. And the stuff I left behind and never missed.</p>
+          <a href="#gear" class="post-cta">See the gear</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SAMPLE BLOG POST ══ -->
+<section class="blog-post-section" id="sample-post">
+  <div class="container">
+    <div class="blog-post-wrap">
+
+      <div class="bp-top-bar reveal">
+        <span class="bp-cat">East Asia · Japan</span>
+        <span class="bp-time">May 14, 2026 · 11 min read</span>
+      </div>
+
+      <h1 class="bp-title reveal">Kyoto Before 7am Is a Different City — Here's How to See It</h1>
+
+      <img
+        src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&auto=format&fit=crop&q=80"
+        alt="Fushimi Inari at 6am — completely empty, golden light"
+        class="bp-hero-img reveal" loading="lazy"
+      >
+      <p class="bp-caption reveal">Fushimi Inari at 6:10am. Literally nobody else. This exact spot has 400 people in it by 8:30am.</p>
+
+      <div class="bp-body reveal">
+
+        <p>I've done Kyoto three times. The first time I was a tourist — I ticked Fushimi Inari, Arashiyama, Kinkaku-ji, came home with 300 photos that look identical to everyone else's, and told people it was "amazing" without really meaning it. I was there but I wasn't <em>there</em>.</p>
+
+        <p>The second time, I set an alarm for 5:45am and walked to Gion before the city woke up. That changed everything. The streets were swept, incense was drifting from somewhere, a tofu seller was cycling past with a wooden cart. No one was photographing anything. It was just a city being itself.</p>
+
+        <p>This post is for that version of Kyoto — the one that exists before the tour groups arrive.</p>
+
+        <h2>Why 5:45am? (seriously, hear me out)</h2>
+
+        <p>Kyoto's most famous spots get <strong>genuinely overcrowded</strong> by 9am. The bamboo grove at Arashiyama is a crowd management exercise by 10am — you'll be queuing to stand in a spot that looks empty in everyone's photos because they took it at 6:30am and didn't tell you that.</p>
+
+        <p>The thing nobody posts about is how Kyoto actually operates before tourists arrive. Temple caretakers doing their morning sweeping. Neighbourhood shops opening for local regulars. The occasional monk walking somewhere with actual purpose. This is a functioning city with a 1,200-year history — it's not a theme park, but daytime Kyoto can feel like one.</p>
+
+        <blockquote>
+          "The best parts of Kyoto don't have opening hours. They exist at 6am for anyone patient enough to show up."
+        </blockquote>
+
+        <h2>The exact spots worth the early alarm</h2>
+
+        <p>Gion on a weekday morning is the non-negotiable. Walk the Hanamikoji-dori and then veer into the side lanes — Shinbashi-dori especially. The wooden machiya townhouses, the stone-flagged alleys, the occasional lantern still burning from the night before. Walk it slowly. You have time.</p>
+
+        <p>Fushimi Inari before 6:30am is genuinely uncrowded at the bottom, and if you hike up 30–40 minutes to the mid-mountain trails, you may have entire sections entirely to yourself. The light through the torii gates at dawn is the image everyone is chasing — the difference is you can actually get it.</p>
+
+        <!-- photo grid -->
+        <div class="bp-photo-grid">
+          <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&auto=format&fit=crop&q=80" alt="Kyoto traditional street in golden morning light" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=700&auto=format&fit=crop&q=80" alt="Kyoto tea house garden" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=700&auto=format&fit=crop&q=80" alt="Narrow Gion lane at sunrise" loading="lazy">
+        </div>
+
+        <h2>Where I stayed (the honest version)</h2>
+
+        <p>I stayed in a small ryokan in the Higashiyama area — futon on tatami, yukata robe, breakfast served in your room at a low table. It cost more than a business hotel. It was worth every rupee. Sleeping on the floor in a centuries-old architectural tradition genuinely recalibrates how you move through a city. You slow down.</p>
+
+        <p>I'm not going to name the specific place because it's small, family-run, and I suspect a feature in a travel blog would overwhelm them. But my search criteria: fewer than 15 rooms, Higashiyama neighbourhood, breakfast included, <em>not</em> on the first page of Google results. The ones ranking highest are usually optimised for volume, not experience.</p>
+
+        <!-- affiliate box -->
+        <div class="aff-box">
+          <div class="aff-icon">🏨</div>
+          <div class="aff-content">
+            <div class="aff-label">Where to book</div>
+            <h4>Search Ryokans — Higashiyama, Kyoto</h4>
+            <p>Filter by "traditional style" + "breakfast included" on Booking.com. Sort by guest score, read reviews from solo travellers specifically. Ignore anything below 8.5.</p>
+            <!-- AFFILIATE LINK — replace with your Booking.com affiliate URL -->
+            <a href="#" class="aff-btn">Search on Booking.com ↗</a>
+            <p class="aff-fine">* Affiliate link — I earn a small commission at zero cost to you. I only link to things I personally use.</p>
+          </div>
+        </div>
+
+        <h2>The food situation</h2>
+
+        <p>Nishiki Market is on every list — go anyway, it earns it. But the meals I actually remember came from unmarked places. A counter-only ramen shop near Nanzen-ji where the menu was hand-calligraphed and the broth took 14 hours. A yakitori stall under a bridge near Fushimi where the owner had been doing exactly this for 30 years and clearly had no interest in being on Instagram.</p>
+
+        <p>Rule I use everywhere but especially Japan: if the menu is only in the local language and there's at least one older local inside eating alone in comfortable silence — sit down. This has a near-perfect success rate.</p>
+
+        <!-- affiliate box -->
+        <div class="aff-box">
+          <div class="aff-icon">🚅</div>
+          <div class="aff-content">
+            <div class="aff-label">Getting there from India</div>
+            <h4>Flights + JR Pass — what I actually bought</h4>
+            <p>I flew with JAL from Delhi via Tokyo. For getting around Kyoto and day-tripping, a local IC card (ICOCA) is usually cheaper than the JR Pass unless you're doing multiple cities. I break down the math here.</p>
+            <!-- AFFILIATE LINK — replace with your travel booking affiliate URL -->
+            <a href="#" class="aff-btn">Compare flight options ↗</a>
+            <p class="aff-fine">* Affiliate link — commission earned at no cost to you.</p>
+          </div>
+        </div>
+
+        <p style="color:var(--muted); font-size:0.85rem; border-top:2px solid var(--border); padding-top:1.25rem; margin-top:2rem; border-radius:0;">
+          <strong style="color:var(--ink);">Trip info:</strong> I visited October–November 2025, staying 12 nights. I paid for everything myself. Some links above are affiliate links — see my <a href="#">disclosure policy</a>. Questions? Drop them in the comments or <a href="#">email me directly</a>.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESTINATIONS ══ -->
+<section class="dest-section" id="destinations">
+  <div class="container">
+    <div class="s-eyebrow" style="color:var(--green); margin-bottom:0.75rem;" class="reveal">Browse by Region</div>
+    <h2 class="s-title reveal" style="color:white;">Where snappy cat has <span style="color:var(--green);">been</span></h2>
+    <p class="s-sub reveal">Click a region to see all posts from that part of the world.</p>
+
+    <div class="dest-grid">
+      <div class="dest-tile reveal">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&auto=format&fit=crop&q=80" alt="East Asia" loading="lazy">
+        <div class="dest-tile-overlay"></div>
+        <div class="dest-tile-label">
+          <span class="dest-tag-green">[X] posts</span>
+          <h3>East Asia</h3>
+        </div>
+      </div>
+      <div class="dest-tile reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=500&auto=format&fit=crop&q=80" alt="Southeast Asia" loading="lazy">
+        <div class="dest-tile-overlay"></div>
+        <div class="dest-tile-label">
+          <span class="dest-tag-pink">[X] posts</span>
+          <h3>Southeast Asia</h3>
+        </div>
+      </div>
+      <div class="dest-tile reveal reveal-d2">
+        <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=500&auto=format&fit=crop&q=80" alt="Europe" loading="lazy">
+        <div class="dest-tile-overlay"></div>
+        <div class="dest-tile-label">
+          <span class="dest-tag-blue">[X] posts</span>
+          <h3>Europe</h3>
+        </div>
+      </div>
+      <div class="dest-tile reveal reveal-d3">
+        <img src="https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=500&auto=format&fit=crop&q=80" alt="Africa & Middle East" loading="lazy">
+        <div class="dest-tile-overlay"></div>
+        <div class="dest-tile-label">
+          <span class="dest-tag-green">[X] posts</span>
+          <h3>Africa &amp; Middle East</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GEAR ══ -->
+<section class="gear-section" id="gear">
+  <div class="container">
+    <div class="s-eyebrow blue reveal">Gear I actually use</div>
+    <h2 class="s-title reveal">Only stuff I'd tell <span class="blue-txt">a friend</span> to buy</h2>
+    <p class="s-sub reveal">I've used everything on this list on at least two real trips. Affiliate links marked with ↗ — they keep this blog alive at zero cost to you.</p>
+
+    <div class="gear-grid">
+      <div class="gear-card reveal">
+        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&auto=format&fit=crop&q=80" alt="Osprey Farpoint 40L pack" class="gear-card-img" loading="lazy">
+        <div class="gear-card-body">
+          <span class="gear-cat cat-green">Bags</span>
+          <h4>Osprey Farpoint 40L</h4>
+          <p>4 years, 20+ countries, never let me down. Fits most carry-on limits. The hip belt actually works. I've tried to replace this bag twice and always come back.</p>
+          <!-- AFFILIATE LINK — replace href -->
+          <a href="#" class="gear-link">Shop on Amazon</a>
+        </div>
+      </div>
+      <div class="gear-card reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&auto=format&fit=crop&q=80" alt="Sony ZV-E10 camera" class="gear-card-img" loading="lazy">
+        <div class="gear-card-body">
+          <span class="gear-cat cat-blue">Camera</span>
+          <h4>Sony ZV-E10 + 16-50mm</h4>
+          <p>Light enough to carry all day, capable enough that people always ask what I shoot with. The kit lens is genuinely excellent for the price. Shoots great video too.</p>
+          <!-- AFFILIATE LINK — replace href -->
+          <a href="#" class="gear-link">Shop on Amazon</a>
+        </div>
+      </div>
+      <div class="gear-card reveal reveal-d2">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&auto=format&fit=crop&q=80" alt="Travel insurance" class="gear-card-img" loading="lazy">
+        <div class="gear-card-body">
+          <span class="gear-cat cat-pink">Insurance</span>
+          <h4>World Nomads</h4>
+          <p>I've actually made a claim with these — the process was fine, payout came through. Best-in-class for adventure activities. Compare their Standard vs Explorer plans based on what you're doing.</p>
+          <!-- AFFILIATE LINK — replace href -->
+          <a href="#" class="gear-link">Get a quote</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="nl-section" id="newsletter" style="padding: 5.5rem 2rem;">
+  <div class="container">
+    <div class="nl-inner">
+      <div class="nl-left reveal">
+        <div class="s-eyebrow" style="color:var(--ink); opacity:0.6; margin-bottom:0.75rem;">Free newsletter</div>
+        <h2>One trip.<br>Every Friday.<br>Zero fluff.</h2>
+        <p style="margin-top:1rem;">Every Friday I send one destination — written from personal experience, with the actual details that help you plan. No roundups, no "top 10 for 2026", no AI-generated filler.</p>
+        <div class="nl-perks">
+          <div class="nl-perk"><span class="nl-perk-dot" style="background:var(--ink);"></span>One original destination every week</div>
+          <div class="nl-perk"><span class="nl-perk-dot" style="background:var(--ink);"></span>Practical tips you won't find on Google</div>
+          <div class="nl-perk"><span class="nl-perk-dot" style="background:var(--ink);"></span>Honest gear + booking recommendations</div>
+          <div class="nl-perk"><span class="nl-perk-dot" style="background:var(--ink);"></span>Free, forever. Unsubscribe any time.</div>
+        </div>
+      </div>
+      <div class="nl-form-wrap reveal reveal-d2">
+        <h3>Join the Snappy Cat crew 🐱</h3>
+        <p>Already read by [X,000]+ travellers every week.</p>
+        <form class="nl-form" onsubmit="handleSub(event)">
+          <input type="text" placeholder="Your first name" required>
+          <input type="email" placeholder="your@email.com" required>
+          <button type="submit" id="nl-btn">Subscribe — it's free →</button>
+        </form>
+        <p class="nl-fine" id="nl-msg">No spam. I write every word myself. Your info stays with me.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLOSURE -->
+<div class="disclosure">
+  <p>
+    <strong>Affiliate Disclosure:</strong> Some links on snappycattravels.in are affiliate links — if you click and buy, I may earn a small commission at zero extra cost to you. I only recommend things I've personally used and would tell a friend about. Sponsored posts are always disclosed clearly. Full <a href="#">disclosure policy here</a>.
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo"><span class="cat">🐱</span> snappycat travels</div>
+      <p class="footer-about">A personal travel journal by [YOUR NAME]. Written from real experience, never from press trips. Honest, specific, and occasionally chaotic — just like the best trips.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Destinations</h5>
+      <ul>
+        <li><a href="#">East Asia</a></li>
+        <li><a href="#">Southeast Asia</a></li>
+        <li><a href="#">Europe</a></li>
+        <li><a href="#">Africa & Middle East</a></li>
+        <li><a href="#">The Caucasus</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Practical</h5>
+      <ul>
+        <li><a href="#">Gear & Packing</a></li>
+        <li><a href="#">Budget Travel</a></li>
+        <li><a href="#">Solo Tips</a></li>
+        <li><a href="#">Itineraries</a></li>
+        <li><a href="#">Travel Insurance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Site</h5>
+      <ul>
+        <li><a href="#">About Me</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Affiliate Disclosure</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 snappycattravels.in · Made with strong chai and questionable decisions</span>
+    <div class="social-row">
+      <a href="#" class="social-btn" aria-label="Instagram">ig</a>
+      <a href="#" class="social-btn" aria-label="Pinterest">pt</a>
+      <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* mobile nav */
+const hb = document.getElementById('hamburger');
+const nl = document.getElementById('navLinks');
+hb.addEventListener('click', () => nl.classList.toggle('open'));
+document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => nl.classList.remove('open')));
+
+/* newsletter */
+function handleSub(e) {
+  e.preventDefault();
+  const btn = document.getElementById('nl-btn');
+  const msg = document.getElementById('nl-msg');
+  btn.textContent = '🎉 You\'re in — check your inbox!';
+  btn.style.background = 'var(--green-dark)';
+  msg.textContent = 'Welcome to the crew. First edition coming Friday.';
+  msg.style.color = 'var(--green-dark)';
+  e.target.reset();
+}
+
+/* active nav highlight */
+const secs = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  links.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--green-dark)' : ''; });
+}, { passive: true });
+</script>
+</body>
+</html>
